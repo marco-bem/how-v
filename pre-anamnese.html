@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pré-Anamnese Infantojuvenil</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f5f7;
+      color: #222;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      text-align: center;
+      font-size: 28px;
+    }
+
+    h2 {
+      margin-top: 32px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #ddd;
+      font-size: 22px;
+    }
+
+    h3 {
+      margin-top: 24px;
+      font-size: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .col-12 { grid-column: span 12; }
+    .col-9  { grid-column: span 9; }
+    .col-8  { grid-column: span 8; }
+    .col-6  { grid-column: span 6; }
+    .col-4  { grid-column: span 4; }
+    .col-3  { grid-column: span 3; }
+    .col-2  { grid-column: span 2; }
+
+    label {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="tel"],
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #cfcfcf;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .inline-options,
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 10px 12px;
+      border: 1px solid #cfcfcf;
+      border-radius: 8px;
+      min-height: 44px;
+      align-items: center;
+    }
+
+    .inline-options label,
+    .checkbox-group label {
+      margin: 0;
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    table th,
+    table td {
+      border: 1px solid #d9d9d9;
+      padding: 10px 8px;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    table th {
+      background: #f0f0f0;
+      text-align: center;
+    }
+
+    .question-col {
+      width: 45%;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .submit-row {
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    button {
+      background: #b87c8f;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 28px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.92;
+    }
+
+    @media (max-width: 768px) {
+      .col-12, .col-9, .col-8, .col-6, .col-4, .col-3, .col-2 {
+        grid-column: span 12;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pré-Anamnese Infantojuvenil</h1>
+
+    <form>
+
+      <h2>1. Identificação da Criança/Adolescente</h2>
+      <div class="grid">
+        <div class="field col-8">
+          <label for="nomeCrianca">Nome da criança</label>
+          <input type="text" id="nomeCrianca" name="nomeCrianca">
+        </div>
+
+        <div class="field col-4">
+          <label for="cpfCrianca">CPF</label>
+          <input type="text" id="cpfCrianca" name="cpfCrianca">
+        </div>
+
+        <div class="field col-4">
+          <label for="dataNascimento">Data de nascimento</label>
+          <input type="date" id="dataNascimento" name="dataNascimento">
+        </div>
+
+        <div class="field col-8">
+          <label for="cidadeNascimento">Cidade de nascimento</label>
+          <input type="text" id="cidadeNascimento" name="cidadeNascimento">
+        </div>
+
+        <div class="field col-6">
+          <label>Escreve com a mão</label>
+          <div class="inline-options">
+            <label><input type="radio" name="maoDominante" value="direita"> Direita</label>
+            <label><input type="radio" name="maoDominante" value="esquerda"> Esquerda</label>
+          </div>
+        </div>
+      </div>
+
+      <h2>2. Filiação</h2>
+      <div class="grid">
+        <div class="field col-6">
+          <label for="nomeMae">Mãe</label>
+          <input type="text" id="nomeMae" name="nomeMae">
+        </div>
+
+        <div class="field col-3">
+          <label for="cpfMae">CPF</label>
+          <input type="text" id="cpfMae" name="cpfMae">
+        </div>
+
+        <div class="field col-3">
+          <label for="dataNascMae">Data de nascimento</label>
+          <input type="date" id="dataNascMae" name="dataNascMae">
+        </div>
+
+        <div class="field col-6">
+          <label for="nomePai">Pai</label>
+          <input type="text" id="nomePai" name="nomePai">
+        </div>
+
+        <div class="field col-3">
+          <label for="cpfPai">CPF</label>
+          <input type="text" id="cpfPai" name="cpfPai">
+        </div>
+
+        <div class="field col-3">
+          <label for="dataNascPai">Data de nascimento</label>
+          <input type="date" id="dataNascPai" name="dataNascPai">
+        </div>
+      </div>
+
+      <h2>3. Hipótese, Encaminhamento e Acompanhamentos</h2>
+      <div class="grid">
+        <div class="field col-12">
+          <label for="hipotese">Hipótese?</label>
+          <textarea id="hipotese" name="hipotese"></textarea>
+        </div>
+
+        <div class="field col-6">
+          <label>Hipótese por algum profissional?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="hipoteseProfissional" value="sim"> Sim</label>
+            <label><input type="radio" name="hipoteseProfissional" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-3">
+          <label for="quemHipotese">Quem?</label>
+          <input type="text" id="quemHipotese" name="quemHipotese">
+        </div>
+
+        <div class="field col-3">
+          <label for="telHipotese">Tel.</label>
+          <input type="tel" id="telHipotese" name="telHipotese">
+        </div>
+
+        <div class="field col-4">
+          <label>Encaminhado por algum profissional?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="encaminhadoProfissional" value="sim"> Sim</label>
+            <label><input type="radio" name="encaminhadoProfissional" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-5">
+          <label for="quemEncaminhou">Quem?</label>
+          <input type="text" id="quemEncaminhou" name="quemEncaminhou">
+        </div>
+
+        <div class="field col-3">
+          <label for="contatoEncaminhou">Contato</label>
+          <input type="text" id="contatoEncaminhou" name="contatoEncaminhou">
+        </div>
+
+        <div class="field col-3">
+          <label for="fazAcompanhamento1">Faz acompanhamento?</label>
+          <input type="text" id="fazAcompanhamento1" name="fazAcompanhamento1">
+        </div>
+
+        <div class="field col-3">
+          <label for="nomeAcompanhamento1">Nome</label>
+          <input type="text" id="nomeAcompanhamento1" name="nomeAcompanhamento1">
+        </div>
+
+        <div class="field col-3">
+          <label for="profissionalAcompanhamento1">Profissional?</label>
+          <input type="text" id="profissionalAcompanhamento1" name="profissionalAcompanhamento1">
+        </div>
+
+        <div class="field col-3">
+          <label for="telAcompanhamento1">Tel.</label>
+          <input type="tel" id="telAcompanhamento1" name="telAcompanhamento1">
+        </div>
+
+        <div class="field col-3">
+          <label for="fazAcompanhamento2">Faz acompanhamento?</label>
+          <input type="text" id="fazAcompanhamento2" name="fazAcompanhamento2">
+        </div>
+
+        <div class="field col-3">
+          <label for="nomeAcompanhamento2">Nome</label>
+          <input type="text" id="nomeAcompanhamento2" name="nomeAcompanhamento2">
+        </div>
+
+        <div class="field col-3">
+          <label for="profissionalAcompanhamento2">Profissional?</label>
+          <input type="text" id="profissionalAcompanhamento2" name="profissionalAcompanhamento2">
+        </div>
+
+        <div class="field col-3">
+          <label for="telAcompanhamento2">Tel.</label>
+          <input type="tel" id="telAcompanhamento2" name="telAcompanhamento2">
+        </div>
+      </div>
+
+      <h2>4. Queixa Familiar</h2>
+      <div class="grid">
+        <div class="field col-12">
+          <label for="queixaFamiliar">Descreva a queixa familiar</label>
+          <textarea id="queixaFamiliar" name="queixaFamiliar" style="min-height: 140px;"></textarea>
+        </div>
+      </div>
+
+      <h2>5. Histórico de Transtorno na Família</h2>
+      <div class="grid">
+        <div class="field col-4">
+          <label>Histórico de transtorno na família</label>
+          <div class="inline-options">
+            <label><input type="radio" name="historicoFamilia" value="nao"> Não</label>
+            <label><input type="radio" name="historicoFamilia" value="sim"> Sim</label>
+          </div>
+        </div>
+
+        <div class="field col-4">
+          <label for="qualHistoricoFamilia">Qual?</label>
+          <input type="text" id="qualHistoricoFamilia" name="qualHistoricoFamilia">
+        </div>
+
+        <div class="field col-4">
+          <label for="quemHistoricoFamilia">Quem?</label>
+          <input type="text" id="quemHistoricoFamilia" name="quemHistoricoFamilia">
+        </div>
+      </div>
+
+      <h2>6. Dados Escolares</h2>
+      <div class="grid">
+        <div class="field col-8">
+          <label for="nomeEscola">Nome da escola</label>
+          <input type="text" id="nomeEscola" name="nomeEscola">
+        </div>
+
+        <div class="field col-2">
+          <label for="anoEscolar">Ano</label>
+          <input type="text" id="anoEscolar" name="anoEscolar">
+        </div>
+
+        <div class="field col-2">
+          <label for="turnoEscolar">Turno</label>
+          <input type="text" id="turnoEscolar" name="turnoEscolar">
+        </div>
+
+        <div class="field col-9">
+          <label for="profCoordenadora">Professora/Coordenadora - Nome</label>
+          <input type="text" id="profCoordenadora" name="profCoordenadora">
+        </div>
+
+        <div class="field col-3">
+          <label for="telProfCoordenadora">Tel.</label>
+          <input type="tel" id="telProfCoordenadora" name="telProfCoordenadora">
+        </div>
+
+        <div class="field col-4">
+          <label>Tipo de escola</label>
+          <div class="inline-options">
+            <label><input type="radio" name="tipoEscola" value="particular"> Particular</label>
+            <label><input type="radio" name="tipoEscola" value="publica"> Pública</label>
+          </div>
+        </div>
+
+        <div class="field col-4">
+          <label>Já repetiu alguma série?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="repetiuSerie" value="nao"> Não</label>
+            <label><input type="radio" name="repetiuSerie" value="sim"> Sim</label>
+          </div>
+        </div>
+
+        <div class="field col-4">
+          <label for="quantasVezesRepetiu">Quantas vezes?</label>
+          <input type="number" id="quantasVezesRepetiu" name="quantasVezesRepetiu" min="0">
+        </div>
+
+        <div class="field col-4">
+          <label>Frequenta escola regularmente?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="frequentaRegularmente" value="sim"> Sim</label>
+            <label><input type="radio" name="frequentaRegularmente" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-4">
+          <label>Tem bom desempenho escolar?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="bomDesempenho" value="sim"> Sim</label>
+            <label><input type="radio" name="bomDesempenho" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-12">
+          <label for="dificuldadeEscola">Alguma dificuldade ou observação sobre comportamento na escola, trocar letra?</label>
+          <textarea id="dificuldadeEscola" name="dificuldadeEscola"></textarea>
+        </div>
+
+        <div class="field col-6">
+          <label for="relColegas">Como é o relacionamento da criança/adolescente no ambiente escolar com colegas?</label>
+          <textarea id="relColegas" name="relColegas"></textarea>
+        </div>
+
+        <div class="field col-6">
+          <label for="colegasComEla">Como os colegas se relacionam com ela?</label>
+          <textarea id="colegasComEla" name="colegasComEla"></textarea>
+        </div>
+
+        <div class="field col-6">
+          <label for="relProfessores">Com professores(as)</label>
+          <textarea id="relProfessores" name="relProfessores"></textarea>
+        </div>
+
+        <div class="field col-6">
+          <label for="professoresComEla">Como os professores(as) se relacionam com ela?</label>
+          <textarea id="professoresComEla" name="professoresComEla"></textarea>
+        </div>
+      </div>
+
+      <h2>7. Histórico de Vida</h2>
+      <div class="grid">
+        <div class="field col-6">
+          <label for="moraComQuem">A criança mora com quem?</label>
+          <input type="text" id="moraComQuem" name="moraComQuem">
+        </div>
+
+        <div class="field col-6">
+          <label>Mãe/Pai moram juntos?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="paisMoramJuntos" value="sim"> Sim</label>
+            <label><input type="radio" name="paisMoramJuntos" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label>A criança foi desejada?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="foiDesejada" value="sim"> Sim</label>
+            <label><input type="radio" name="foiDesejada" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label>A criança foi planejada?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="foiPlanejada" value="sim"> Sim</label>
+            <label><input type="radio" name="foiPlanejada" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="idadeMaeGestacao">Idade da mãe</label>
+          <input type="text" id="idadeMaeGestacao" name="idadeMaeGestacao">
+        </div>
+
+        <div class="field col-6">
+          <label for="idadePaiGestacao">Idade do pai</label>
+          <input type="text" id="idadePaiGestacao" name="idadePaiGestacao">
+        </div>
+
+        <div class="field col-6">
+          <label>Fez pré-natal?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="prenatal" value="sim"> Sim</label>
+            <label><input type="radio" name="prenatal" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="tentativasAborto">Tentativas de aborto ou complicações gestacionais</label>
+          <input type="text" id="tentativasAborto" name="tentativasAborto">
+        </div>
+
+        <div class="field col-6">
+          <label>Faz acompanhamento especializado?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="acompanhamentoEspecializado" value="sim"> Sim</label>
+            <label><input type="radio" name="acompanhamentoEspecializado" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="qualAcompanhamentoEspecializado">Qual?</label>
+          <input type="text" id="qualAcompanhamentoEspecializado" name="qualAcompanhamentoEspecializado">
+        </div>
+
+        <div class="field col-6">
+          <label for="problemaSaude">Tem algum problema de saúde?</label>
+          <input type="text" id="problemaSaude" name="problemaSaude">
+        </div>
+
+        <div class="field col-6">
+          <label for="usoMedicacao">Faz uso de medicação?</label>
+          <input type="text" id="usoMedicacao" name="usoMedicacao">
+        </div>
+      </div>
+
+      <h2>8. Parto e Neonatal</h2>
+      <div class="grid">
+        <div class="field col-6">
+          <label for="tipoParto">Como foi o parto?</label>
+          <select id="tipoParto" name="tipoParto">
+            <option value="">Selecione</option>
+            <option>Normal</option>
+            <option>Cesariana</option>
+            <option>Fórceps</option>
+          </select>
+        </div>
+
+        <div class="field col-6">
+          <label>Chorou ao nascer?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="chorouAoNascer" value="sim"> Sim</label>
+            <label><input type="radio" name="chorouAoNascer" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label>Ficou em incubadora?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="incubadora" value="sim"> Sim</label>
+            <label><input type="radio" name="incubadora" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="tempoIncubadora">Se sim, tempo</label>
+          <input type="text" id="tempoIncubadora" name="tempoIncubadora">
+        </div>
+
+        <div class="field col-6">
+          <label for="nasceuQuantosMeses">Nasceu com quantos meses?</label>
+          <input type="text" id="nasceuQuantosMeses" name="nasceuQuantosMeses">
+        </div>
+
+        <div class="field col-6">
+          <label for="complicacaoParto">Houve alguma complicação durante o parto?</label>
+          <input type="text" id="complicacaoParto" name="complicacaoParto">
+        </div>
+
+        <div class="field col-12">
+          <label>Foi necessário utilizar algum recurso?</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="recursoParto" value="oxigenio"> Oxigênio</label>
+            <label><input type="checkbox" name="recursoParto" value="ressuscitador"> Ressuscitador</label>
+            <label><input type="checkbox" name="recursoParto" value="transfusao"> Transfusão</label>
+            <label><input type="checkbox" name="recursoParto" value="outros"> Outros</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label>Fez uso de substância psicoativa/medicação na gestação?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="substanciaGestacao" value="sim"> Sim</label>
+            <label><input type="radio" name="substanciaGestacao" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="qualSubstanciaGestacao">Qual?</label>
+          <input type="text" id="qualSubstanciaGestacao" name="qualSubstanciaGestacao">
+        </div>
+
+        <div class="field col-12">
+          <label>A mãe apresentou algum problema durante a gravidez?</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="problemasGravidez" value="emocional"> Emocional</label>
+            <label><input type="checkbox" name="problemasGravidez" value="queda"> Queda</label>
+            <label><input type="checkbox" name="problemasGravidez" value="medicamentos"> Medicamentos</label>
+            <label><input type="checkbox" name="problemasGravidez" value="infeccao"> Infecção</label>
+            <label><input type="checkbox" name="problemasGravidez" value="rubeola"> Rubéola</label>
+            <label><input type="checkbox" name="problemasGravidez" value="sarampo"> Sarampo</label>
+            <label><input type="checkbox" name="problemasGravidez" value="toxoplasmose"> Toxoplasmose</label>
+            <label><input type="checkbox" name="problemasGravidez" value="outros"> Outros</label>
+          </div>
+        </div>
+      </div>
+
+      <h2>9. Desenvolvimento Motor</h2>
+      <div class="grid">
+        <div class="field col-6">
+          <label for="levantouCabeca">Levantou a cabeça/segurou o pescoço, com quantos meses?</label>
+          <input type="text" id="levantouCabeca" name="levantouCabeca">
+        </div>
+
+        <div class="field col-3">
+          <label>Sentou sozinho?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="sentouSozinho" value="sim"> Sim</label>
+            <label><input type="radio" name="sentouSozinho" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-3">
+          <label for="mesesSentou">Com quantos meses?</label>
+          <input type="text" id="mesesSentou" name="mesesSentou">
+        </div>
+
+        <div class="field col-6">
+          <label for="mesesEngatinhou">Engatinhou, com quantos meses?</label>
+          <input type="text" id="mesesEngatinhou" name="mesesEngatinhou">
+        </div>
+
+        <div class="field col-6">
+          <label for="mesesAndou">Andou, com quantos meses?</label>
+          <input type="text" id="mesesAndou" name="mesesAndou">
+        </div>
+
+        <div class="field col-12">
+          <label>Depois que começou a andar, parou de fazê-lo alguma vez?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="parouAndar" value="sim"> Sim</label>
+            <label><input type="radio" name="parouAndar" value="nao"> Não</label>
+          </div>
+        </div>
+      </div>
+
+      <h2>10. Desenvolvimento da Linguagem</h2>
+      <div class="grid">
+        <div class="field col-4">
+          <label for="idadeFalou">Começou a falar com que idade?</label>
+          <input type="text" id="idadeFalou" name="idadeFalou">
+        </div>
+
+        <div class="field col-4">
+          <label>Gaguejou?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="gaguejou" value="sim"> Sim</label>
+            <label><input type="radio" name="gaguejou" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-4">
+          <label>Gagueja?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="gaguejaAtual" value="sim"> Sim</label>
+            <label><input type="radio" name="gaguejaAtual" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-12">
+          <label>Fala corretamente?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="falaCorretamente" value="sim"> Sim</label>
+            <label><input type="radio" name="falaCorretamente" value="nao"> Não</label>
+          </div>
+        </div>
+      </div>
+
+      <h2>11. Controle de Esfíncteres</h2>
+      <div class="grid">
+        <div class="field col-6">
+          <label for="urinaDia">Controlou urina durante o dia? Com que idade?</label>
+          <input type="text" id="urinaDia" name="urinaDia">
+        </div>
+
+        <div class="field col-6">
+          <label for="urinaNoite">Controlou urina à noite? Com que idade?</label>
+          <input type="text" id="urinaNoite" name="urinaNoite">
+        </div>
+
+        <div class="field col-6">
+          <label for="fezesDia">Controlou fezes durante o dia? Com que idade?</label>
+          <input type="text" id="fezesDia" name="fezesDia">
+        </div>
+
+        <div class="field col-6">
+          <label for="fezesNoite">Controlou fezes à noite? Com que idade?</label>
+          <input type="text" id="fezesNoite" name="fezesNoite">
+        </div>
+      </div>
+
+      <h2>12. Comportamentos e Hábitos do Dia a Dia</h2>
+      <table>
+        <thead>
+          <tr>
+            <th class="question-col">Comportamento / Hábito</th>
+            <th>Sim</th>
+            <th>Não</th>
+            <th>Às vezes</th>
+            <th>Com orientação da/o responsável</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Escova os dentes</td>
+            <td class="center"><input type="radio" name="escovaDentes" value="sim"></td>
+            <td class="center"><input type="radio" name="escovaDentes" value="nao"></td>
+            <td class="center"><input type="radio" name="escovaDentes" value="asvezes"></td>
+            <td class="center"><input type="radio" name="escovaDentes" value="orientacao"></td>
+          </tr>
+          <tr>
+            <td>Se veste sozinho</td>
+            <td class="center"><input type="radio" name="seVeste" value="sim"></td>
+            <td class="center"><input type="radio" name="seVeste" value="nao"></td>
+            <td class="center"><input type="radio" name="seVeste" value="asvezes"></td>
+            <td class="center"><input type="radio" name="seVeste" value="orientacao"></td>
+          </tr>
+          <tr>
+            <td>Calça os sapatos</td>
+            <td class="center"><input type="radio" name="calcaSapatos" value="sim"></td>
+            <td class="center"><input type="radio" name="calcaSapatos" value="nao"></td>
+            <td class="center"><input type="radio" name="calcaSapatos" value="asvezes"></td>
+            <td class="center"><input type="radio" name="calcaSapatos" value="orientacao"></td>
+          </tr>
+          <tr>
+            <td>Alimenta-se sozinho</td>
+            <td class="center"><input type="radio" name="alimentaSozinho" value="sim"></td>
+            <td class="center"><input type="radio" name="alimentaSozinho" value="nao"></td>
+            <td class="center"><input type="radio" name="alimentaSozinho" value="asvezes"></td>
+            <td class="center"><input type="radio" name="alimentaSozinho" value="orientacao"></td>
+          </tr>
+          <tr>
+            <td>Vai à escola sozinho</td>
+            <td class="center"><input type="radio" name="vaiEscolaSozinho" value="sim"></td>
+            <td class="center"><input type="radio" name="vaiEscolaSozinho" value="nao"></td>
+            <td class="center"><input type="radio" name="vaiEscolaSozinho" value="asvezes"></td>
+            <td class="center"><input type="radio" name="vaiEscolaSozinho" value="orientacao"></td>
+          </tr>
+          <tr>
+            <td>Toma banho sozinho</td>
+            <td class="center"><input type="radio" name="banhoSozinho" value="sim"></td>
+            <td class="center"><input type="radio" name="banhoSozinho" value="nao"></td>
+            <td class="center"><input type="radio" name="banhoSozinho" value="asvezes"></td>
+            <td class="center"><input type="radio" name="banhoSozinho" value="orientacao"></td>
+          </tr>
+          <tr>
+            <td>Pentear os cabelos sozinho</td>
+            <td class="center"><input type="radio" name="penteiaCabelo" value="sim"></td>
+            <td class="center"><input type="radio" name="penteiaCabelo" value="nao"></td>
+            <td class="center"><input type="radio" name="penteiaCabelo" value="asvezes"></td>
+            <td class="center"><input type="radio" name="penteiaCabelo" value="orientacao"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>13. Sono</h2>
+      <div class="grid">
+        <div class="field col-4">
+          <label for="horasSono">Quantas horas dorme por noite?</label>
+          <input type="text" id="horasSono" name="horasSono">
+        </div>
+
+        <div class="field col-4">
+          <label for="horaDormir">Que horas costuma dormir?</label>
+          <input type="text" id="horaDormir" name="horaDormir">
+        </div>
+
+        <div class="field col-4">
+          <label for="horaAcordar">Que horas costuma acordar?</label>
+          <input type="text" id="horaAcordar" name="horaAcordar">
+        </div>
+
+        <div class="field col-4">
+          <label>Acorda durante a noite?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="acordaNoite" value="sim"> Sim</label>
+            <label><input type="radio" name="acordaNoite" value="nao"> Não</label>
+            <label><input type="radio" name="acordaNoite" value="asvezes"> Às vezes</label>
+          </div>
+        </div>
+
+        <div class="field col-4">
+          <label>Dorme durante o dia?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="dormeDia" value="sim"> Sim</label>
+            <label><input type="radio" name="dormeDia" value="nao"> Não</label>
+            <label><input type="radio" name="dormeDia" value="asvezes"> Às vezes</label>
+          </div>
+        </div>
+
+        <div class="field col-4">
+          <label>Fala dormindo?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="falaDormindo" value="sim"> Sim</label>
+            <label><input type="radio" name="falaDormindo" value="nao"> Não</label>
+            <label><input type="radio" name="falaDormindo" value="asvezes"> Às vezes</label>
+          </div>
+        </div>
+
+        <div class="field col-4">
+          <label>Tem pesadelos?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="pesadelos" value="sim"> Sim</label>
+            <label><input type="radio" name="pesadelos" value="nao"> Não</label>
+            <label><input type="radio" name="pesadelos" value="asvezes"> Às vezes</label>
+          </div>
+        </div>
+
+        <div class="field col-4">
+          <label>Sudorese noturna?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="sudoreseNoturna" value="sim"> Sim</label>
+            <label><input type="radio" name="sudoreseNoturna" value="nao"> Não</label>
+            <label><input type="radio" name="sudoreseNoturna" value="asvezes"> Às vezes</label>
+          </div>
+        </div>
+
+        <div class="field col-4">
+          <label for="dormeComQuem">Dorme com quem?</label>
+          <input type="text" id="dormeComQuem" name="dormeComQuem">
+        </div>
+
+        <div class="field col-12">
+          <label for="comoSono">Como é o sono?</label>
+          <textarea id="comoSono" name="comoSono"></textarea>
+        </div>
+      </div>
+
+      <h2>14. Alimentação</h2>
+      <div class="grid">
+        <div class="field col-4">
+          <label for="leiteMaterno">Mamou leite materno? Até que idade?</label>
+          <input type="text" id="leiteMaterno" name="leiteMaterno">
+        </div>
+
+        <div class="field col-4">
+          <label for="mamadeiraChupeta">Usou mamadeira e/ou chupeta? Qual idade?</label>
+          <input type="text" id="mamadeiraChupeta" name="mamadeiraChupeta">
+        </div>
+
+        <div class="field col-4">
+          <label for="habitosAlimentares">Hábitos alimentares (família e criança)</label>
+          <input type="text" id="habitosAlimentares" name="habitosAlimentares">
+        </div>
+
+        <div class="field col-6">
+          <label>Tem alguma restrição alimentar?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="restricaoAlimentar" value="sim"> Sim</label>
+            <label><input type="radio" name="restricaoAlimentar" value="nao"> Não</label>
+            <label><input type="radio" name="restricaoAlimentar" value="asvezes"> Às vezes</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="qualRestricaoAlimentar">Qual?</label>
+          <input type="text" id="qualRestricaoAlimentar" name="qualRestricaoAlimentar">
+        </div>
+
+        <div class="field col-6">
+          <label>Preferência alimentar exagerada?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="preferenciaExagerada" value="sim"> Sim</label>
+            <label><input type="radio" name="preferenciaExagerada" value="nao"> Não</label>
+            <label><input type="radio" name="preferenciaExagerada" value="asvezes"> Às vezes</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="qualPreferenciaExagerada">Qual?</label>
+          <input type="text" id="qualPreferenciaExagerada" name="qualPreferenciaExagerada">
+        </div>
+      </div>
+
+      <h2>15. Informações Adicionais - Familiar</h2>
+      <div class="grid">
+        <div class="field col-6">
+          <label>A criança se relaciona bem com irmãos/as ou outros familiares?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="relFamiliares" value="sim"> Sim</label>
+            <label><input type="radio" name="relFamiliares" value="nao"> Não</label>
+            <label><input type="radio" name="relFamiliares" value="asvezes"> Às vezes</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="obsFamiliares">Obs.</label>
+          <input type="text" id="obsFamiliares" name="obsFamiliares">
+        </div>
+
+        <div class="field col-6">
+          <label>Existem outros familiares que participam da educação ou cuidado da criança?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="outrosFamiliaresParticipam" value="sim"> Sim</label>
+            <label><input type="radio" name="outrosFamiliaresParticipam" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="comoParticipacaoFamiliares">Se sim, como é essa participação?</label>
+          <input type="text" id="comoParticipacaoFamiliares" name="comoParticipacaoFamiliares">
+        </div>
+
+        <div class="field col-6">
+          <label>A família tem animais de estimação?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="animaisEstimacao" value="sim"> Sim</label>
+            <label><input type="radio" name="animaisEstimacao" value="nao"> Não</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="relacaoAnimais">Como a criança se relaciona com eles?</label>
+          <input type="text" id="relacaoAnimais" name="relacaoAnimais">
+        </div>
+      </div>
+
+      <h2>16. Informações Adicionais - Emocional</h2>
+      <div class="grid">
+        <div class="field col-6">
+          <label>Bom estado emocional?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="estadoEmocional" value="sim"> Sim</label>
+            <label><input type="radio" name="estadoEmocional" value="nao"> Não</label>
+            <label><input type="radio" name="estadoEmocional" value="asvezes"> Às vezes</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="obsEstadoEmocional">Obs.</label>
+          <input type="text" id="obsEstadoEmocional" name="obsEstadoEmocional">
+        </div>
+
+        <div class="field col-6">
+          <label>Boa interação com outras pessoas?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="interacaoOutrasPessoas" value="sim"> Sim</label>
+            <label><input type="radio" name="interacaoOutrasPessoas" value="nao"> Não</label>
+            <label><input type="radio" name="interacaoOutrasPessoas" value="asvezes"> Às vezes</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="obsInteracaoOutrasPessoas">Obs.</label>
+          <input type="text" id="obsInteracaoOutrasPessoas" name="obsInteracaoOutrasPessoas">
+        </div>
+
+        <div class="field col-6">
+          <label>Relacionamento saudável com a família?</label>
+          <div class="inline-options">
+            <label><input type="radio" name="relSaudavelFamilia" value="sim"> Sim</label>
+            <label><input type="radio" name="relSaudavelFamilia" value="nao"> Não</label>
+            <label><input type="radio" name="relSaudavelFamilia" value="asvezes"> Às vezes</label>
+          </div>
+        </div>
+
+        <div class="field col-6">
+          <label for="obsRelSaudavelFamilia">Obs.</label>
+          <input type="text" id="obsRelSaudavelFamilia" name="obsRelSaudavelFamilia">
+        </div>
+      </div>
+
+      <h2>17. Quais desses comportamentos sua filha/o apresenta?</h2>
+      <p class="note">Não é obrigatório fazer observações, apenas se julgar necessário.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th class="question-col">Observações / Itens</th>
+            <th>Sim</th>
+            <th>Não</th>
+            <th>Às vezes</th>
+            <th>Observações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>TEA - Comunicação e Interação Social:</strong><br>Dificuldade de iniciar ou manter interações sociais?</td>
+            <td class="center"><input type="radio" name="tea1" value="sim"></td>
+            <td class="center"><input type="radio" name="tea1" value="nao"></td>
+            <td class="center"><input type="radio" name="tea1" value="asvezes"></td>
+            <td><input type="text" name="obsTea1"></td>
+          </tr>
+          <tr>
+            <td>Pouco compartilhamento de interesses, emoções ou afeto?</td>
+            <td class="center"><input type="radio" name="tea2" value="sim"></td>
+            <td class="center"><input type="radio" name="tea2" value="nao"></td>
+            <td class="center"><input type="radio" name="tea2" value="asvezes"></td>
+            <td><input type="text" name="obsTea2"></td>
+          </tr>
+          <tr>
+            <td>Dificuldade para fazer ou manter amizades?</td>
+            <td class="center"><input type="radio" name="tea3" value="sim"></td>
+            <td class="center"><input type="radio" name="tea3" value="nao"></td>
+            <td class="center"><input type="radio" name="tea3" value="asvezes"></td>
+            <td><input type="text" name="obsTea3"></td>
+          </tr>
+          <tr>
+            <td>Pouco uso de gestos, expressões faciais ou linguagem corporal?</td>
+            <td class="center"><input type="radio" name="tea4" value="sim"></td>
+            <td class="center"><input type="radio" name="tea4" value="nao"></td>
+            <td class="center"><input type="radio" name="tea4" value="asvezes"></td>
+            <td><input type="text" name="obsTea4"></td>
+          </tr>
+          <tr>
+            <td>Não responde ou demora a responder quando chamado(a)?</td>
+            <td class="center"><input type="radio" name="tea5" value="sim"></td>
+            <td class="center"><input type="radio" name="tea5" value="nao"></td>
+            <td class="center"><input type="radio" name="tea5" value="asvezes"></td>
+            <td><input type="text" name="obsTea5"></td>
+          </tr>
+
+          <tr>
+            <td><strong>TEA - Padrões Restritos e Repetitivos:</strong><br>Movimentos repetitivos (mãos, corpo) ou fala repetitiva?</td>
+            <td class="center"><input type="radio" name="tea6" value="sim"></td>
+            <td class="center"><input type="radio" name="tea6" value="nao"></td>
+            <td class="center"><input type="radio" name="tea6" value="asvezes"></td>
+            <td><input type="text" name="obsTea6"></td>
+          </tr>
+          <tr>
+            <td>Insistência em rotinas ou resistência a mudanças?</td>
+            <td class="center"><input type="radio" name="tea7" value="sim"></td>
+            <td class="center"><input type="radio" name="tea7" value="nao"></td>
+            <td class="center"><input type="radio" name="tea7" value="asvezes"></td>
+            <td><input type="text" name="obsTea7"></td>
+          </tr>
+          <tr>
+            <td>Interesses muito restritos ou intensos?</td>
+            <td class="center"><input type="radio" name="tea8" value="sim"></td>
+            <td class="center"><input type="radio" name="tea8" value="nao"></td>
+            <td class="center"><input type="radio" name="tea8" value="asvezes"></td>
+            <td><input type="text" name="obsTea8"></td>
+          </tr>
+          <tr>
+            <td>Hiper ou hiporreatividade a estímulos sensoriais (sons, luz, toque, textura, cheiros)?</td>
+            <td class="center"><input type="radio" name="tea9" value="sim"></td>
+            <td class="center"><input type="radio" name="tea9" value="nao"></td>
+            <td class="center"><input type="radio" name="tea9" value="asvezes"></td>
+            <td><input type="text" name="obsTea9"></td>
+          </tr>
+
+          <tr>
+            <td><strong>TDAH - Desatenção:</strong><br>Dificuldade de manter atenção em tarefas ou brincadeiras?</td>
+            <td class="center"><input type="radio" name="tdah1" value="sim"></td>
+            <td class="center"><input type="radio" name="tdah1" value="nao"></td>
+            <td class="center"><input type="radio" name="tdah1" value="asvezes"></td>
+            <td><input type="text" name="obsTdah1"></td>
+          </tr>
+          <tr>
+            <td>Erros por descuido (não presta atenção em detalhes)?</td>
+            <td class="center"><input type="radio" name="tdah2" value="sim"></td>
+            <td class="center"><input type="radio" name="tdah2" value="nao"></td>
+            <td class="center"><input type="radio" name="tdah2" value="asvezes"></td>
+            <td><input type="text" name="obsTdah2"></td>
+          </tr>
+          <tr>
+            <td>Parece não escutar quando falam diretamente?</td>
+            <td class="center"><input type="radio" name="tdah3" value="sim"></td>
+            <td class="center"><input type="radio" name="tdah3" value="nao"></td>
+            <td class="center"><input type="radio" name="tdah3" value="asvezes"></td>
+            <td><input type="text" name="obsTdah3"></td>
+          </tr>
+          <tr>
+            <td>Não finaliza tarefas ou trabalhos escolares?</td>
+            <td class="center"><input type="radio" name="tdah4" value="sim"></td>
+            <td class="center"><input type="radio" name="tdah4" value="nao"></td>
+            <td class="center"><input type="radio" name="tdah4" value="asvezes"></td>
+            <td><input type="text" name="obsTdah4"></td>
+          </tr>
+          <tr>
+            <td>Dificuldade de organizar atividades ou materiais?</td>
+            <td class="center"><input type="radio" name="tdah5" value="sim"></td>
+            <td class="center"><input type="radio" name="tdah5" value="nao"></td>
+            <td class="center"><input type="radio" name="tdah5" value="asvezes"></td>
+            <td><input type="text" name="obsTdah5"></td>
+          </tr>
+          <tr>
+            <td>Perde objetos com frequência?</td>
+            <td class="center"><input type="radio" name="tdah6" value="sim"></td>
+            <td class="center"><input type="radio" name="tdah6" value="nao"></td>
+            <td class="center"><input type="radio" name="tdah6" value="asvezes"></td>
+            <td><input type="text" name="obsTdah6"></td>
+          </tr>
+
+          <tr>
+            <td><strong>TDAH - Hiperatividade/Impulsividade:</strong><br>Agitação ou inquietação constante?</td>
+            <td class="center"><input type="radio" name="tdah7" value="sim"></td>
+            <td class="center"><input type="radio" name="tdah7" value="nao"></td>
+            <td class="center"><input type="radio" name="tdah7" value="asvezes"></td>
+            <td><input type="text" name="obsTdah7"></td>
+          </tr>
+          <tr>
+            <td>Dificuldade de permanecer sentado?</td>
+            <td class="center"><input type="radio" name="tdah8" value="sim"></td>
+            <td class="center"><input type="radio" name="tdah8" value="nao"></td>
+            <td class="center"><input type="radio" name="tdah8" value="asvezes"></td>
+            <td><input type="text" name="obsTdah8"></td>
+          </tr>
+          <tr>
+            <td>Fala excessiva ou interrompe os outros?</td>
+            <td class="center"><input type="radio" name="tdah9" value="sim"></td>
+            <td class="center"><input type="radio" name="tdah9" value="nao"></td>
+            <td class="center"><input type="radio" name="tdah9" value="asvezes"></td>
+            <td><input type="text" name="obsTdah9"></td>
+          </tr>
+          <tr>
+            <td>Age sem pensar nas consequências?</td>
+            <td class="center"><input type="radio" name="tdah10" value="sim"></td>
+            <td class="center"><input type="radio" name="tdah10" value="nao"></td>
+            <td class="center"><input type="radio" name="tdah10" value="asvezes"></td>
+            <td><input type="text" name="obsTdah10"></td>
+          </tr>
+          <tr>
+            <td>Dificuldade de esperar a vez ou controlar impulsos?</td>
+            <td class="center"><input type="radio" name="tdah11" value="sim"></td>
+            <td class="center"><input type="radio" name="tdah11" value="nao"></td>
+            <td class="center"><input type="radio" name="tdah11" value="asvezes"></td>
+            <td><input type="text" name="obsTdah11"></td>
+          </tr>
+
+          <tr>
+            <td><strong>TOD - Transtorno Opositivo-Desafiador:</strong><br>Irritabilidade frequente?</td>
+            <td class="center"><input type="radio" name="tod1" value="sim"></td>
+            <td class="center"><input type="radio" name="tod1" value="nao"></td>
+            <td class="center"><input type="radio" name="tod1" value="asvezes"></td>
+            <td><input type="text" name="obsTod1"></td>
+          </tr>
+          <tr>
+            <td>Desafia regras ou adultos?</td>
+            <td class="center"><input type="radio" name="tod2" value="sim"></td>
+            <td class="center"><input type="radio" name="tod2" value="nao"></td>
+            <td class="center"><input type="radio" name="tod2" value="asvezes"></td>
+            <td><input type="text" name="obsTod2"></td>
+          </tr>
+          <tr>
+            <td>Comportamento agressivo ou vingativo?</td>
+            <td class="center"><input type="radio" name="tod3" value="sim"></td>
+            <td class="center"><input type="radio" name="tod3" value="nao"></td>
+            <td class="center"><input type="radio" name="tod3" value="asvezes"></td>
+            <td><input type="text" name="obsTod3"></td>
+          </tr>
+          <tr>
+            <td>Culpa os outros pelos próprios erros?</td>
+            <td class="center"><input type="radio" name="tod4" value="sim"></td>
+            <td class="center"><input type="radio" name="tod4" value="nao"></td>
+            <td class="center"><input type="radio" name="tod4" value="asvezes"></td>
+            <td><input type="text" name="obsTod4"></td>
+          </tr>
+
+          <tr>
+            <td><strong>Transtorno de Aprendizagem:</strong><br>Dificuldade persistente na leitura?</td>
+            <td class="center"><input type="radio" name="apr1" value="sim"></td>
+            <td class="center"><input type="radio" name="apr1" value="nao"></td>
+            <td class="center"><input type="radio" name="apr1" value="asvezes"></td>
+            <td><input type="text" name="obsApr1"></td>
+          </tr>
+          <tr>
+            <td>Leitura lenta ou com muitos erros?</td>
+            <td class="center"><input type="radio" name="apr2" value="sim"></td>
+            <td class="center"><input type="radio" name="apr2" value="nao"></td>
+            <td class="center"><input type="radio" name="apr2" value="asvezes"></td>
+            <td><input type="text" name="obsApr2"></td>
+          </tr>
+          <tr>
+            <td>Dificuldade na escrita (ortografia/organização)?</td>
+            <td class="center"><input type="radio" name="apr3" value="sim"></td>
+            <td class="center"><input type="radio" name="apr3" value="nao"></td>
+            <td class="center"><input type="radio" name="apr3" value="asvezes"></td>
+            <td><input type="text" name="obsApr3"></td>
+          </tr>
+          <tr>
+            <td>Dificuldade em matemática ou cálculos?</td>
+            <td class="center"><input type="radio" name="apr4" value="sim"></td>
+            <td class="center"><input type="radio" name="apr4" value="nao"></td>
+            <td class="center"><input type="radio" name="apr4" value="asvezes"></td>
+            <td><input type="text" name="obsApr4"></td>
+          </tr>
+          <tr>
+            <td>Desempenho escolar abaixo do esperado?</td>
+            <td class="center"><input type="radio" name="apr5" value="sim"></td>
+            <td class="center"><input type="radio" name="apr5" value="nao"></td>
+            <td class="center"><input type="radio" name="apr5" value="asvezes"></td>
+            <td><input type="text" name="obsApr5"></td>
+          </tr>
+
+          <tr>
+            <td><strong>Deficiência Intelectual:</strong><br>Atraso global no desenvolvimento?</td>
+            <td class="center"><input type="radio" name="di1" value="sim"></td>
+            <td class="center"><input type="radio" name="di1" value="nao"></td>
+            <td class="center"><input type="radio" name="di1" value="asvezes"></td>
+            <td><input type="text" name="obsDi1"></td>
+          </tr>
+          <tr>
+            <td>Dificuldade em atividades do dia a dia (autonomia)?</td>
+            <td class="center"><input type="radio" name="di2" value="sim"></td>
+            <td class="center"><input type="radio" name="di2" value="nao"></td>
+            <td class="center"><input type="radio" name="di2" value="asvezes"></td>
+            <td><input type="text" name="obsDi2"></td>
+          </tr>
+          <tr>
+            <td>Dificuldade significativa na aprendizagem geral?</td>
+            <td class="center"><input type="radio" name="di3" value="sim"></td>
+            <td class="center"><input type="radio" name="di3" value="nao"></td>
+            <td class="center"><input type="radio" name="di3" value="asvezes"></td>
+            <td><input type="text" name="obsDi3"></td>
+          </tr>
+
+          <tr>
+            <td><strong>Altas Habilidades/Superdotação:</strong><br>Aprende com muita facilidade?</td>
+            <td class="center"><input type="radio" name="ah1" value="sim"></td>
+            <td class="center"><input type="radio" name="ah1" value="nao"></td>
+            <td class="center"><input type="radio" name="ah1" value="asvezes"></td>
+            <td><input type="text" name="obsAh1"></td>
+          </tr>
+          <tr>
+            <td>Vocabulário avançado para a idade?</td>
+            <td class="center"><input type="radio" name="ah2" value="sim"></td>
+            <td class="center"><input type="radio" name="ah2" value="nao"></td>
+            <td class="center"><input type="radio" name="ah2" value="asvezes"></td>
+            <td><input type="text" name="obsAh2"></td>
+          </tr>
+          <tr>
+            <td>Raciocínio lógico ou criativo muito desenvolvido?</td>
+            <td class="center"><input type="radio" name="ah3" value="sim"></td>
+            <td class="center"><input type="radio" name="ah3" value="nao"></td>
+            <td class="center"><input type="radio" name="ah3" value="asvezes"></td>
+            <td><input type="text" name="obsAh3"></td>
+          </tr>
+          <tr>
+            <td>Tédio frequente em atividades simples?</td>
+            <td class="center"><input type="radio" name="ah4" value="sim"></td>
+            <td class="center"><input type="radio" name="ah4" value="nao"></td>
+            <td class="center"><input type="radio" name="ah4" value="asvezes"></td>
+            <td><input type="text" name="obsAh4"></td>
+          </tr>
+          <tr>
+            <td>Interesses profundos e específicos?</td>
+            <td class="center"><input type="radio" name="ah5" value="sim"></td>
+            <td class="center"><input type="radio" name="ah5" value="nao"></td>
+            <td class="center"><input type="radio" name="ah5" value="asvezes"></td>
+            <td><input type="text" name="obsAh5"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>18. Informações Adicionais</h2>
+      <div class="grid">
+        <div class="field col-12">
+          <label for="informacoesAdicionais">Informações adicionais</label>
+          <textarea id="informacoesAdicionais" name="informacoesAdicionais" style="min-height: 120px;"></textarea>
+        </div>
+
+        <div class="field col-12">
+          <label for="responsavel">Responsável(a)</label>
+          <input type="text" id="responsavel" name="responsavel">
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit">Enviar formulário</button>
+      </div>
+
+    </form>
+  </div>
+</body>
+</html>
