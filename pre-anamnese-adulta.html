@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pré-Anamnese - Pessoa Adulta</title>
+  <style>
+    :root {
+      --bg: #f6f3f2;
+      --card: #ffffff;
+      --line: #e7dedb;
+      --text: #403735;
+      --muted: #7d6f6a;
+      --accent: #b98f8c;
+      --accent-soft: #efe3e2;
+      --shadow: 0 10px 30px rgba(87, 63, 57, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #fbf9f8 0%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #f8efee 100%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+      color: #6b4d4c;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    form {
+      display: grid;
+      gap: 20px;
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .section-header {
+      background: var(--accent-soft);
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 1.12rem;
+      color: #6b4d4c;
+    }
+
+    .section-header small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+    }
+
+    .section-body {
+      padding: 20px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .field,
+    .full-width {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label,
+    .legend {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #5b4a47;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid #d8cbc7;
+      border-radius: 12px;
+      background: #fff;
+      color: var(--text);
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(185, 143, 140, 0.15);
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      border: 1px solid #eadfdb;
+      border-radius: 14px;
+      background: #fffdfd;
+    }
+
+    .options.inline {
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+
+    .check,
+    .radio {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #9b6f6c;
+      flex: 0 0 auto;
+    }
+
+    .subgroup {
+      border: 1px solid #f0e7e4;
+      border-radius: 14px;
+      padding: 16px;
+      background: #fcfafa;
+      display: grid;
+      gap: 14px;
+    }
+
+    .subgroup h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: #6d5553;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: #ece5e3;
+      color: #5f4e4b;
+    }
+
+    .hint {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-top: -2px;
+    }
+
+    @media (max-width: 860px) {
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .page { padding: 20px 14px 40px; }
+      .hero { padding: 22px; }
+      .section-body { padding: 16px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { max-width: 100%; padding: 0; }
+      .hero, .section { box-shadow: none; }
+      .actions { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <h1>Pré-Anamnese - Pessoa Adulta</h1>
+      <p>Formulário estruturado com todos os campos do documento original, organizado em seções para facilitar o preenchimento antes da avaliação neuropsicológica.</p>
+    </section>
+
+    <form>
+      <section class="section">
+        <div class="section-header">
+          <h2>1. Identificação</h2>
+        </div>
+        <div class="section-body">
+          <div class="grid grid-2">
+            <div class="field"><label for="nome">Nome completo</label><input id="nome" name="nome" type="text"></div>
+            <div class="field"><label for="cpf">CPF</label><input id="cpf" name="cpf" type="text"></div>
+            <div class="field"><label for="nascimento">Data de nascimento</label><input id="nascimento" name="nascimento" type="date"></div>
+            <div class="field"><label for="idade">Idade</label><input id="idade" name="idade" type="number" min="0"></div>
+            <div class="field"><label for="estadoCivil">Estado civil</label><input id="estadoCivil" name="estadoCivil" type="text"></div>
+            <div class="field"><label for="profissaoOcupacao">Profissão/ocupação atual</label><input id="profissaoOcupacao" name="profissaoOcupacao" type="text"></div>
+            <div class="field"><label for="escolaridade">Escolaridade</label><input id="escolaridade" name="escolaridade" type="text"></div>
+            <div class="field"><label for="telefone">Telefone</label><input id="telefone" name="telefone" type="tel"></div>
+            <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email"></div>
+            <div class="field full-width"><label for="endereco">Endereço</label><input id="endereco" name="endereco" type="text"></div>
+          </div>
+
+          <div class="grid grid-2">
+            <fieldset class="subgroup">
+              <legend class="legend">Sexo</legend>
+              <div class="options inline">
+                <label class="radio"><input type="radio" name="sexo" value="Masculino"> Masculino</label>
+                <label class="radio"><input type="radio" name="sexo" value="Feminino"> Feminino</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="subgroup">
+              <legend class="legend">Escreve com a mão</legend>
+              <div class="options inline">
+                <label class="radio"><input type="radio" name="mao" value="Direita"> Direita</label>
+                <label class="radio"><input type="radio" name="mao" value="Esquerda"> Esquerda</label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>2. Encaminhamento</h2></div>
+        <div class="section-body">
+          <fieldset class="subgroup">
+            <legend class="legend">Quem solicitou a avaliação?</legend>
+            <div class="options inline">
+              <label class="check"><input type="checkbox" name="solicitante" value="Médica/o"> Médica/o</label>
+              <label class="check"><input type="checkbox" name="solicitante" value="Psicóloga/o"> Psicóloga/o</label>
+              <label class="check"><input type="checkbox" name="solicitante" value="Escola/Universidade"> Escola/Universidade</label>
+              <label class="check"><input type="checkbox" name="solicitante" value="Iniciativa própria"> Iniciativa própria</label>
+            </div>
+            <div class="field"><label for="solicitanteOutro">Outro</label><input id="solicitanteOutro" name="solicitanteOutro" type="text"></div>
+          </fieldset>
+
+          <div class="field">
+            <label for="hipoteseObjetivos">Hipótese profissional / objetivos da avaliação</label>
+            <textarea id="hipoteseObjetivos" name="hipoteseObjetivos"></textarea>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="field"><label for="responsavelNome">Contato do responsável (se aplicável) - Nome</label><input id="responsavelNome" name="responsavelNome" type="text"></div>
+            <div class="field"><label for="responsavelTel">Contato do responsável (se aplicável) - Telefone</label><input id="responsavelTel" name="responsavelTel" type="tel"></div>
+          </div>
+
+          <fieldset class="subgroup">
+            <legend class="legend">Faz acompanhamento especializado?</legend>
+            <div class="options inline">
+              <label class="radio"><input type="radio" name="acompanhamentoEspecializado" value="Sim"> Sim</label>
+              <label class="radio"><input type="radio" name="acompanhamentoEspecializado" value="Não"> Não</label>
+            </div>
+            <div class="grid grid-3">
+              <div class="field"><label for="acompQual">Qual?</label><input id="acompQual" name="acompQual" type="text"></div>
+              <div class="field"><label for="acompProfissional">Profissional</label><input id="acompProfissional" name="acompProfissional" type="text"></div>
+              <div class="field"><label for="acompTel">Telefone</label><input id="acompTel" name="acompTel" type="tel"></div>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>3. Queixa Principal</h2></div>
+        <div class="section-body">
+          <div class="field"><label for="principalDificuldade">Qual é a principal dificuldade atualmente?</label><textarea id="principalDificuldade" name="principalDificuldade"></textarea></div>
+          <div class="field"><label for="tempoDificuldades">Há quanto tempo percebe essas dificuldades?</label><input id="tempoDificuldades" name="tempoDificuldades" type="text"></div>
+
+          <fieldset class="subgroup">
+            <legend class="legend">Os sintomas</legend>
+            <div class="options inline">
+              <label class="radio"><input type="radio" name="sintomasEvolucao" value="Permanecem iguais"> Permanecem iguais</label>
+              <label class="radio"><input type="radio" name="sintomasEvolucao" value="Pioraram com o tempo"> Pioraram com o tempo</label>
+              <label class="radio"><input type="radio" name="sintomasEvolucao" value="Melhoraram"> Melhoraram</label>
+            </div>
+          </fieldset>
+
+          <div class="field"><label for="dificuldadesAtuais">Descreva as dificuldades atuais</label><textarea id="dificuldadesAtuais" name="dificuldadesAtuais"></textarea></div>
+          <div class="field"><label for="situacoesDificuldades">Em quais situações essas dificuldades aparecem?</label><textarea id="situacoesDificuldades" name="situacoesDificuldades"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>4. Histórico Familiar</h2></div>
+        <div class="section-body">
+          <fieldset class="subgroup">
+            <legend class="legend">Há histórico familiar de</legend>
+            <div class="options inline">
+              <label class="check"><input type="checkbox" name="historicoFamiliar" value="Alzheimer"> Alzheimer</label>
+              <label class="check"><input type="checkbox" name="historicoFamiliar" value="Demência"> Demência</label>
+              <label class="check"><input type="checkbox" name="historicoFamiliar" value="TDAH"> TDAH</label>
+              <label class="check"><input type="checkbox" name="historicoFamiliar" value="Depressão"> Depressão</label>
+              <label class="check"><input type="checkbox" name="historicoFamiliar" value="Ansiedade"> Ansiedade</label>
+              <label class="check"><input type="checkbox" name="historicoFamiliar" value="Transtornos psiquiátricos"> Transtornos psiquiátricos</label>
+              <label class="check"><input type="checkbox" name="historicoFamiliar" value="Doenças neurológicas"> Doenças neurológicas</label>
+            </div>
+          </fieldset>
+          <div class="field"><label for="quemFamilia">Quem na família?</label><textarea id="quemFamilia" name="quemFamilia"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>5. Escolaridade e Histórico Profissional</h2></div>
+        <div class="section-body">
+          <div class="subgroup">
+            <h3>Escolaridade / Histórico Escolar</h3>
+
+            <fieldset class="subgroup">
+              <legend class="legend">Teve dificuldades na escola?</legend>
+              <div class="options inline">
+                <label class="radio"><input type="radio" name="dificuldadeEscola" value="Sim"> Sim</label>
+                <label class="radio"><input type="radio" name="dificuldadeEscola" value="Não"> Não</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="subgroup">
+              <legend class="legend">Quais?</legend>
+              <div class="options inline">
+                <label class="check"><input type="checkbox" name="dificuldadesEscolares" value="Atenção"> Atenção</label>
+                <label class="check"><input type="checkbox" name="dificuldadesEscolares" value="Leitura"> Leitura</label>
+                <label class="check"><input type="checkbox" name="dificuldadesEscolares" value="Escrita"> Escrita</label>
+                <label class="check"><input type="checkbox" name="dificuldadesEscolares" value="Matemática"> Matemática</label>
+                <label class="check"><input type="checkbox" name="dificuldadesEscolares" value="Comportamento"> Comportamento</label>
+                <label class="check"><input type="checkbox" name="dificuldadesEscolares" value="Organização"> Organização</label>
+                <label class="check"><input type="checkbox" name="dificuldadesEscolares" value="Compreensão"> Compreensão</label>
+              </div>
+            </fieldset>
+
+            <div class="grid grid-2">
+              <fieldset class="subgroup">
+                <legend class="legend">Repetiu algum ano?</legend>
+                <div class="options inline">
+                  <label class="radio"><input type="radio" name="repetiuAno" value="Sim"> Sim</label>
+                  <label class="radio"><input type="radio" name="repetiuAno" value="Não"> Não</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="subgroup">
+                <legend class="legend">Precisou de apoio escolar?</legend>
+                <div class="options inline">
+                  <label class="radio"><input type="radio" name="apoioEscolar" value="Sim"> Sim</label>
+                  <label class="radio"><input type="radio" name="apoioEscolar" value="Não"> Não</label>
+                </div>
+              </fieldset>
+            </div>
+
+            <fieldset class="subgroup">
+              <legend class="legend">Professores relatavam</legend>
+              <div class="options inline">
+                <label class="check"><input type="checkbox" name="relatosProfessores" value="Distração"> Distração</label>
+                <label class="check"><input type="checkbox" name="relatosProfessores" value="Hiperatividade"> Hiperatividade</label>
+                <label class="check"><input type="checkbox" name="relatosProfessores" value="Dificuldades de aprendizagem"> Dificuldades de aprendizagem</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="subgroup">
+            <h3>Histórico Profissional</h3>
+            <div class="field"><label for="profissaoAtual">Profissão atual</label><input id="profissaoAtual" name="profissaoAtual" type="text"></div>
+            <fieldset class="subgroup">
+              <legend class="legend">Já teve dificuldades no trabalho relacionadas a</legend>
+              <div class="options inline">
+                <label class="check"><input type="checkbox" name="dificuldadesTrabalho" value="Atenção"> Atenção</label>
+                <label class="check"><input type="checkbox" name="dificuldadesTrabalho" value="Organização"> Organização</label>
+                <label class="check"><input type="checkbox" name="dificuldadesTrabalho" value="Memória"> Memória</label>
+                <label class="check"><input type="checkbox" name="dificuldadesTrabalho" value="Cumprimento de prazos"> Cumprimento de prazos</label>
+                <label class="check"><input type="checkbox" name="dificuldadesTrabalho" value="Relacionamento interpessoal"> Relacionamento interpessoal</label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>6. Histórico de Saúde</h2></div>
+        <div class="section-body">
+          <fieldset class="subgroup">
+            <legend class="legend">Possui ou já teve</legend>
+            <div class="options inline">
+              <label class="check"><input type="checkbox" name="historicoSaude" value="Hipertensão"> Hipertensão</label>
+              <label class="check"><input type="checkbox" name="historicoSaude" value="Diabetes"> Diabetes</label>
+              <label class="check"><input type="checkbox" name="historicoSaude" value="Epilepsia"> Epilepsia</label>
+              <label class="check"><input type="checkbox" name="historicoSaude" value="AVC"> AVC</label>
+              <label class="check"><input type="checkbox" name="historicoSaude" value="Traumatismo craniano"> Traumatismo craniano</label>
+              <label class="check"><input type="checkbox" name="historicoSaude" value="Doenças neurológicas"> Doenças neurológicas</label>
+            </div>
+            <div class="field"><label for="outrasDoencas">Outras doenças</label><input id="outrasDoencas" name="outrasDoencas" type="text"></div>
+          </fieldset>
+
+          <fieldset class="subgroup">
+            <legend class="legend">Usa medicamentos atualmente?</legend>
+            <div class="options inline">
+              <label class="radio"><input type="radio" name="usaMedicamentos" value="Sim"> Sim</label>
+              <label class="radio"><input type="radio" name="usaMedicamentos" value="Não"> Não</label>
+            </div>
+            <div class="field"><label for="quaisMedicamentos">Quais?</label><textarea id="quaisMedicamentos" name="quaisMedicamentos"></textarea></div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>7. Histórico Psiquiátrico/Psicológico</h2></div>
+        <div class="section-body">
+          <div class="grid grid-2">
+            <fieldset class="subgroup">
+              <legend class="legend">Já fez psicoterapia?</legend>
+              <div class="options inline">
+                <label class="radio"><input type="radio" name="psicoterapia" value="Sim"> Sim</label>
+                <label class="radio"><input type="radio" name="psicoterapia" value="Não"> Não</label>
+              </div>
+            </fieldset>
+            <fieldset class="subgroup">
+              <legend class="legend">Já consultou psiquiatra?</legend>
+              <div class="options inline">
+                <label class="radio"><input type="radio" name="psiquiatra" value="Sim"> Sim</label>
+                <label class="radio"><input type="radio" name="psiquiatra" value="Não"> Não</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <fieldset class="subgroup">
+            <legend class="legend">Já recebeu diagnóstico de</legend>
+            <div class="options inline">
+              <label class="check"><input type="checkbox" name="diagnosticos" value="Depressão"> Depressão</label>
+              <label class="check"><input type="checkbox" name="diagnosticos" value="Ansiedade"> Ansiedade</label>
+              <label class="check"><input type="checkbox" name="diagnosticos" value="TDAH"> TDAH</label>
+              <label class="check"><input type="checkbox" name="diagnosticos" value="Transtorno bipolar"> Transtorno bipolar</label>
+            </div>
+            <div class="field"><label for="diagnosticoOutro">Outro</label><input id="diagnosticoOutro" name="diagnosticoOutro" type="text"></div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>8. Sono</h2></div>
+        <div class="section-body">
+          <div class="field"><label for="horasSono">Quantas horas dorme por noite?</label><input id="horasSono" name="horasSono" type="text"></div>
+          <fieldset class="subgroup">
+            <legend class="legend">Qualidade do sono</legend>
+            <div class="options inline">
+              <label class="radio"><input type="radio" name="qualidadeSono" value="Boa"> Boa</label>
+              <label class="radio"><input type="radio" name="qualidadeSono" value="Regular"> Regular</label>
+              <label class="radio"><input type="radio" name="qualidadeSono" value="Ruim"> Ruim</label>
+            </div>
+          </fieldset>
+          <fieldset class="subgroup">
+            <legend class="legend">Apresenta</legend>
+            <div class="options inline">
+              <label class="check"><input type="checkbox" name="sonoApresenta" value="Insônia"> Insônia</label>
+              <label class="check"><input type="checkbox" name="sonoApresenta" value="Acorda durante a noite"> Acorda durante a noite</label>
+              <label class="check"><input type="checkbox" name="sonoApresenta" value="Sonolência diurna"> Sonolência diurna</label>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>9. Uso de Substâncias</h2></div>
+        <div class="section-body">
+          <fieldset class="subgroup">
+            <legend class="legend">Consome álcool?</legend>
+            <div class="options inline">
+              <label class="radio"><input type="radio" name="alcool" value="Não"> Não</label>
+              <label class="radio"><input type="radio" name="alcool" value="Socialmente"> Socialmente</label>
+              <label class="radio"><input type="radio" name="alcool" value="Frequentemente"> Frequentemente</label>
+            </div>
+          </fieldset>
+          <div class="grid grid-2">
+            <fieldset class="subgroup">
+              <legend class="legend">Fuma?</legend>
+              <div class="options inline">
+                <label class="radio"><input type="radio" name="fuma" value="Sim"> Sim</label>
+                <label class="radio"><input type="radio" name="fuma" value="Não"> Não</label>
+              </div>
+            </fieldset>
+            <fieldset class="subgroup">
+              <legend class="legend">Usa ou já usou drogas?</legend>
+              <div class="options inline">
+                <label class="radio"><input type="radio" name="drogas" value="Sim"> Sim</label>
+                <label class="radio"><input type="radio" name="drogas" value="Não"> Não</label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>10. Histórico da Gestação e Nascimento</h2>
+          <small>(para referência de eventos precoces relevantes, se disponível)</small>
+        </div>
+        <div class="section-body">
+          <div class="subgroup">
+            <h3>Durante a gestação</h3>
+            <div class="grid grid-2">
+              <fieldset class="subgroup">
+                <legend class="legend">A gestação foi planejada?</legend>
+                <div class="options inline">
+                  <label class="radio"><input type="radio" name="gestacaoPlanejada" value="Sim"> Sim</label>
+                  <label class="radio"><input type="radio" name="gestacaoPlanejada" value="Não"> Não</label>
+                </div>
+              </fieldset>
+              <fieldset class="subgroup">
+                <legend class="legend">Houve complicações na gravidez?</legend>
+                <div class="options inline">
+                  <label class="radio"><input type="radio" name="complicacoesGravidez" value="Sim"> Sim</label>
+                  <label class="radio"><input type="radio" name="complicacoesGravidez" value="Não"> Não</label>
+                </div>
+              </fieldset>
+            </div>
+            <div class="field"><label for="qualComplicacaoGravidez">Se sim, qual?</label><textarea id="qualComplicacaoGravidez" name="qualComplicacaoGravidez"></textarea></div>
+
+            <fieldset class="subgroup">
+              <legend class="legend">A mãe teve</legend>
+              <div class="options inline">
+                <label class="check"><input type="checkbox" name="maeTeve" value="Hipertensão"> Hipertensão</label>
+                <label class="check"><input type="checkbox" name="maeTeve" value="Diabetes gestacional"> Diabetes gestacional</label>
+                <label class="check"><input type="checkbox" name="maeTeve" value="Infecções"> Infecções</label>
+                <label class="check"><input type="checkbox" name="maeTeve" value="Uso de medicamentos"> Uso de medicamentos</label>
+                <label class="check"><input type="checkbox" name="maeTeve" value="Uso de álcool ou drogas"> Uso de álcool ou drogas</label>
+                <label class="check"><input type="checkbox" name="maeTeve" value="Estresse intenso"> Estresse intenso</label>
+              </div>
+              <div class="field"><label for="outrasComplicacoesMae">Outras complicações</label><input id="outrasComplicacoesMae" name="outrasComplicacoesMae" type="text"></div>
+            </fieldset>
+          </div>
+
+          <div class="subgroup">
+            <h3>Parto</h3>
+            <fieldset class="subgroup">
+              <legend class="legend">Tipo de parto</legend>
+              <div class="options inline">
+                <label class="radio"><input type="radio" name="tipoParto" value="Normal"> Normal</label>
+                <label class="radio"><input type="radio" name="tipoParto" value="Cesárea"> Cesárea</label>
+                <label class="radio"><input type="radio" name="tipoParto" value="Fórceps"> Fórceps</label>
+              </div>
+            </fieldset>
+            <fieldset class="subgroup">
+              <legend class="legend">O bebê nasceu</legend>
+              <div class="options inline">
+                <label class="radio"><input type="radio" name="nascimentoTempo" value="No tempo esperado"> No tempo esperado</label>
+                <label class="radio"><input type="radio" name="nascimentoTempo" value="Prematuro"> Prematuro</label>
+                <label class="radio"><input type="radio" name="nascimentoTempo" value="Pós-termo"> Pós-termo</label>
+              </div>
+            </fieldset>
+            <div class="grid grid-3">
+              <fieldset class="subgroup">
+                <legend class="legend">Houve complicações no parto?</legend>
+                <div class="options inline">
+                  <label class="radio"><input type="radio" name="complicacoesParto" value="Sim"> Sim</label>
+                  <label class="radio"><input type="radio" name="complicacoesParto" value="Não"> Não</label>
+                </div>
+              </fieldset>
+              <fieldset class="subgroup">
+                <legend class="legend">Precisou ficar em incubadora?</legend>
+                <div class="options inline">
+                  <label class="radio"><input type="radio" name="incubadora" value="Sim"> Sim</label>
+                  <label class="radio"><input type="radio" name="incubadora" value="Não"> Não</label>
+                </div>
+              </fieldset>
+              <div class="field"><label for="pesoNascer">Peso ao nascer (se souber)</label><input id="pesoNascer" name="pesoNascer" type="text"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>11. Desenvolvimento na Infância</h2></div>
+        <div class="section-body">
+          <div class="subgroup">
+            <h3>Marcos do desenvolvimento</h3>
+            <div class="grid grid-4">
+              <div class="field"><label for="sentou">Sentou</label><input id="sentou" name="sentou" type="text"></div>
+              <div class="field"><label for="engatinhou">Engatinhou</label><input id="engatinhou" name="engatinhou" type="text"></div>
+              <div class="field"><label for="andou">Andou</label><input id="andou" name="andou" type="text"></div>
+              <div class="field"><label for="primeirasPalavras">Falou primeiras palavras</label><input id="primeirasPalavras" name="primeirasPalavras" type="text"></div>
+            </div>
+          </div>
+
+          <fieldset class="subgroup">
+            <legend class="legend">Houve atraso no desenvolvimento?</legend>
+            <div class="options inline">
+              <label class="radio"><input type="radio" name="atrasoDesenvolvimento" value="Sim"> Sim</label>
+              <label class="radio"><input type="radio" name="atrasoDesenvolvimento" value="Não"> Não</label>
+            </div>
+          </fieldset>
+
+          <div class="subgroup">
+            <h3>Linguagem</h3>
+            <div class="grid grid-2">
+              <fieldset class="subgroup">
+                <legend class="legend">Teve atraso para falar?</legend>
+                <div class="options inline">
+                  <label class="radio"><input type="radio" name="atrasoFala" value="Sim"> Sim</label>
+                  <label class="radio"><input type="radio" name="atrasoFala" value="Não"> Não</label>
+                </div>
+              </fieldset>
+              <fieldset class="subgroup">
+                <legend class="legend">Precisou de fonoaudiologia?</legend>
+                <div class="options inline">
+                  <label class="radio"><input type="radio" name="fonoaudiologia" value="Sim"> Sim</label>
+                  <label class="radio"><input type="radio" name="fonoaudiologia" value="Não"> Não</label>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>12. Comportamento na Infância</h2></div>
+        <div class="section-body">
+          <fieldset class="subgroup">
+            <legend class="legend">Na infância a pessoa era</legend>
+            <div class="options inline">
+              <label class="check"><input type="checkbox" name="comportamentoInfancia" value="Muito agitada"> Muito agitada</label>
+              <label class="check"><input type="checkbox" name="comportamentoInfancia" value="Distraída"> Distraída</label>
+              <label class="check"><input type="checkbox" name="comportamentoInfancia" value="Impulsiva"> Impulsiva</label>
+              <label class="check"><input type="checkbox" name="comportamentoInfancia" value="Tímida"> Tímida</label>
+              <label class="check"><input type="checkbox" name="comportamentoInfancia" value="Agressiva"> Agressiva</label>
+              <label class="check"><input type="checkbox" name="comportamentoInfancia" value="Ansiosa"> Ansiosa</label>
+              <label class="check"><input type="checkbox" name="comportamentoInfancia" value="Organizada"> Organizada</label>
+              <label class="check"><input type="checkbox" name="comportamentoInfancia" value="Esquecida"> Esquecida</label>
+            </div>
+          </fieldset>
+          <div class="field"><label for="observacoesInfancia">Observações</label><textarea id="observacoesInfancia" name="observacoesInfancia"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>13. Funcionamento Cognitivo Atual</h2></div>
+        <div class="section-body">
+          <div class="field">
+            <label for="funcionamentoCognitivo">Percebe dificuldades em</label>
+            <textarea id="funcionamentoCognitivo" name="funcionamentoCognitivo"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>14. Funcionamento Emocional</h2></div>
+        <div class="section-body">
+          <fieldset class="subgroup">
+            <legend class="legend">Nos últimos meses tem sentido</legend>
+            <div class="options inline">
+              <label class="check"><input type="checkbox" name="funcionamentoEmocional" value="Ansiedade"> Ansiedade</label>
+              <label class="check"><input type="checkbox" name="funcionamentoEmocional" value="Tristeza"> Tristeza</label>
+              <label class="check"><input type="checkbox" name="funcionamentoEmocional" value="Irritabilidade"> Irritabilidade</label>
+              <label class="check"><input type="checkbox" name="funcionamentoEmocional" value="Desmotivação"> Desmotivação</label>
+              <label class="check"><input type="checkbox" name="funcionamentoEmocional" value="Mudanças de humor"> Mudanças de humor</label>
+              <label class="check"><input type="checkbox" name="funcionamentoEmocional" value="Dificuldade de socialização"> Dificuldade de socialização</label>
+              <label class="check"><input type="checkbox" name="funcionamentoEmocional" value="Problemas comportamentais"> Problemas comportamentais</label>
+            </div>
+          </fieldset>
+          <div class="field"><label for="observacoesAdicionais">Observações adicionais</label><textarea id="observacoesAdicionais" name="observacoesAdicionais"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>15. Atividades de Vida Diária</h2></div>
+        <div class="section-body">
+          <fieldset class="subgroup">
+            <legend class="legend">Consegue realizar sozinho(a)</legend>
+            <div class="options inline">
+              <label class="check"><input type="checkbox" name="vidaDiaria" value="Cuidar da higiene pessoal"> Cuidar da higiene pessoal</label>
+              <label class="check"><input type="checkbox" name="vidaDiaria" value="Administrar dinheiro"> Administrar dinheiro</label>
+              <label class="check"><input type="checkbox" name="vidaDiaria" value="Cozinhar"> Cozinhar</label>
+              <label class="check"><input type="checkbox" name="vidaDiaria" value="Dirigir"> Dirigir</label>
+              <label class="check"><input type="checkbox" name="vidaDiaria" value="Organizar compromissos"> Organizar compromissos</label>
+              <label class="check"><input type="checkbox" name="vidaDiaria" value="Tomar medicamentos corretamente"> Tomar medicamentos corretamente</label>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>16. Expectativas em Relação à Avaliação</h2></div>
+        <div class="section-body">
+          <div class="field">
+            <label for="expectativas">O que espera compreender ou descobrir com a avaliação neuropsicológica?</label>
+            <textarea id="expectativas" name="expectativas"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button type="reset" class="btn-secondary">Limpar</button>
+        <button type="submit" class="btn-primary">Enviar</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
